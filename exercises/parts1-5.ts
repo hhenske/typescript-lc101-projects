@@ -15,7 +15,7 @@ const milesToMars: number = kilometersToMars * milesPerKilometer;
 let hoursToMars: number = milesToMars / speedMph;
 let daysToMars: number = hoursToMars / 24;
 
-// Code an output statement here (use a template literal):
+
 
 
 
@@ -36,7 +36,14 @@ console.log(`It will take ${spacecraftName} ${getDaysToLocation(kilometersToTheM
 
 // Part 4: Create a Spacecraft Class
 
-
+class Spacecraft {
+    name: string;
+    constructor(name: string, speedMph: number) {
+    this.milesPerKilometer: number = 0.621;
+    this.name: string;
+    this.speedMph: number;
+    }
+}
 
 
 // Create an instance of the class here:
