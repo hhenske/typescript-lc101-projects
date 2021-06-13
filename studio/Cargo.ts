@@ -1,13 +1,13 @@
-Class Cargo {
+class Cargo {
     massKg: number;
     material: string;
-constructor(massKg: number, material: string)
-    this.massKg = massKg;
-    this.material = material;
-
+    constructor(massKg: number, material: string) {
+        this.massKg = massKg;
+        this.material = material;
+    }
 }
 
 
-export class Cargo {4
+export class Cargo {
 
 }
