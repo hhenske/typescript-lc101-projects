@@ -41,5 +41,3 @@ for (let i = 0; i < cargo.length; i++) {
 }
 
 console.log(`Final cargo and astronaut mass: ${falcon9.currentMassKg()} kg.`);
-
-

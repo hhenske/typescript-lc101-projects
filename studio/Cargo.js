@@ -9,9 +9,3 @@ var Cargo = /** @class */ (function () {
     return Cargo;
 }());
 exports.Cargo = Cargo;
-var Cargo = /** @class */ (function () {
-    function Cargo() {
-    }
-    return Cargo;
-}());
-exports.Cargo = Cargo;
