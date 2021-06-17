@@ -10,15 +10,15 @@ var Rocket = /** @class */ (function () {
     }
     Rocket.prototype.sumMass = function (items) {
         //returns the sum of all items using each item's massKG property
-        var sumMass = this.cargoItems.map(function (a) { return a.massKg; }).reduce(function (a, b) {
-            return a + b;
-        });
-        return sumMass;
+        var sum = 0;
+        for (var i = 0; i < items.length; i++) {
+            sum += items[i].massKg;
+        }
+        return sum;
     };
     Rocket.prototype.currentMassKg = function () {
         //uses this.sumMass to return the combined mass of this.astronauts and this.cargoItems
-        var currentMass = Number(this.sumMass) + Number(this.astronauts) + Number(this.cargoItems);
-        return currentMass;
+        return this.sumMass(this.cargoItems) + this.sumMass(this.astronauts);
     };
     Rocket.prototype.canAdd = function (item) {
         //returns true if this.currentMassKg() + item.massKg <= this.totalCapacityKG
@@ -28,8 +28,8 @@ var Rocket = /** @class */ (function () {
     };
     Rocket.prototype.addCargo = function (cargo) {
         //uses this.canAdd() to see if another item cn be added.  If true, adds cargo tho this.cargoItems and returns true. If false, returns false
-        if (this.canAdd()) {
-            cargo = cargo + this.cargoItems;
+        if (this.canAdd(cargo)) {
+            this.cargoItems.push(cargo);
             return true;
         }
         else {
@@ -38,8 +38,8 @@ var Rocket = /** @class */ (function () {
     };
     Rocket.prototype.addAstronaut = function (astronaut) {
         //uses this.canAdd() to see if another astronaut can e added. If true, adds astronaut to this.astronauts and returns true, if fase, returns false 
-        if (this.canAdd()) {
-            var astronauts = astronaut + this.astronauts;
+        if (this.canAdd(astronaut)) {
+            this.astronauts.push(astronaut);
             return true;
         }
         else {

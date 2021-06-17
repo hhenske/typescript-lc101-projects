@@ -4,9 +4,11 @@ import { Payload } from "./Payload";
 
 export class Rocket {
     name: string;
+    massKg: number;
     totalCapacityKg: number;
-    cargoItems = []
-    astronauts = [];
+    cargoItems: Cargo[] = [];
+    astronauts: Astronaut[] = [];
+
     constructor(name: string, totalCapacityKg: number) {
         this.name = name;
         this.totalCapacityKg = totalCapacityKg;
@@ -15,16 +17,17 @@ export class Rocket {
     sumMass ( items: Payload[]): number {
         //returns the sum of all items using each item's massKG property
        
-      let sumMass: number = this.cargoItems.map(a => a.massKg).reduce(function(a,b){
-          return a+b;
-      });
-      return sumMass;
+        let sum: number = 0
+          for (let i =0; i < items.length; i++){
+              sum += items[i].massKg;
+          }
+
+      return sum;
     }
 
     currentMassKg(): number {
         //uses this.sumMass to return the combined mass of this.astronauts and this.cargoItems
-       let currentMass = Number(this.sumMass) + Number(this.astronauts) + Number(this.cargoItems);
-       return currentMass;
+       return this.sumMass(this.cargoItems) + this.sumMass(this.astronauts);
     }
 
     canAdd(item: Payload): boolean {
@@ -36,8 +39,8 @@ export class Rocket {
 
     addCargo(cargo: Cargo): boolean {
         //uses this.canAdd() to see if another item cn be added.  If true, adds cargo tho this.cargoItems and returns true. If false, returns false
-        if (this.canAdd()) {
-            cargo = cargo + this.cargoItems
+        if (this.canAdd(cargo)) {
+            this.cargoItems.push(cargo);
             return true;
         } else {
             return false;
@@ -46,9 +49,9 @@ export class Rocket {
 
     addAstronaut(astronaut: Astronaut): boolean {
         //uses this.canAdd() to see if another astronaut can e added. If true, adds astronaut to this.astronauts and returns true, if fase, returns false 
-        if (this.canAdd()) {
-            let astronauts = astronaut + this.astronauts;
-            return true
+        if (this.canAdd(astronaut)) {
+            this.astronauts.push(astronaut);
+            return true;
         } else {
             return false;
         }
